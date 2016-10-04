@@ -1,0 +1,3 @@
+describe TimeEntriesController do
+
+end

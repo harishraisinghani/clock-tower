@@ -1,0 +1,32 @@
+<div class="jumbotron report-options">
+  <div class="container">
+    <%= form_tag(admin_users_path, method: :get, class: "form", role: "form") do %>
+      <div class="row">
+
+        <div class="col-md-4 option-field">
+          <%= select_tag :locations, options_from_collection_for_select(@all_locations, :id, :name, params[:locations]), { class: "form-control chosen-select", "data-placeholder" => "Filter by Location", multiple: true } %>
+        </div>
+
+        <div class="col-md-4 option-field">
+          <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Email" %>
+        </div>
+
+        <div class="col-md-4 option-field">
+          <%= text_field_tag :name, params[:name], class: "form-control", placeholder: "Name/Company" %>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3">
+          <%= button_tag "Fetch", class: "btn btn-primary control-btn pull-right btn-block" %>
+        </div>
+
+        <div class="col-md-offset-6 col-md-3">
+          <%= link_to "Create new user", new_admin_user_path, class: 'btn btn-primary control-btn pull-right' %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>

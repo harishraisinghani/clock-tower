@@ -1,0 +1,42 @@
+<div class="container padding-top-20">
+  <h2>Your Api Keys</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Last Used</th>
+        <th>Last Used From</th>
+        <th>Note</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @api_keys.each do |api_key| %>
+        <tr>
+          <th><input type="text" size="36" onclick="this.focus();this.select()" readonly="readonly" value="<%= api_key.key %>" /></td>
+          <th><%= api_key.last_accessed ? api_key.last_accessed : 'Never' %></td>
+          <th><%= api_key.last_ip.empty? ? 'Never' : api_key.last_ip %></td>
+          <th><span class="glyphicon glyphicon-file" data-toggle="tooltip" data-placement="left" title="<%= api_key.note %>"></span></td>
+          <td><%= link_to 'Revoke', api_key, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h3>Create new API key</h3>
+
+  <%= form_for @api_key, url: api_keys_path, method: :post do |f| %>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="form-group">
+          <%= f.label :note, 'Note' %>
+          <%= f.text_field :note, { class: 'form-control'} %>
+        </div>
+        <div class="col-md-3">
+          <%= f.submit "Create API key", class: "btn btn-primary btn-block control-btn" %>
+        </div>
+      </div>
+  <% end %>
+</div><!-- container -->

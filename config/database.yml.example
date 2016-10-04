@@ -1,0 +1,17 @@
+# PostgreSQL. Versions 8.2 and up are supported.
+
+development:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: clocktower2_development
+  min_messages: warning
+  pool:     5
+
+test:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: clocktower2_test
+  pool:     5
+  min_messages: warning

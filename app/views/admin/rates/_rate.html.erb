@@ -1,0 +1,9 @@
+<tr>
+  <td><%= rate.user.fullname %></td>
+  <td><%= rate.project.try(:name) %></td>
+  <td><%= rate.task.try(:name) %></td>
+  <td><%= rate.rate %></td>
+  <td><%= rate.note %></td>
+  <td><%= link_to "Edit", edit_admin_rate_path(rate) %></td>
+  <td><%= link_to "Delete", admin_rate_path(rate), method: :delete %></td>
+</tr>

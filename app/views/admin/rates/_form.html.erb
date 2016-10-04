@@ -1,0 +1,21 @@
+<%= render 'admin/shared/form_error', object: @rate %>
+
+<%= form_for @rate, url: @path do |f| %>
+
+  <%= f.label :user_id, "User" %>
+  <%= f.select :user_id, options_from_collection_for_select(@all_users, :id, :fullname, params[:user]), { class: "form-control", "data-placeholder" => "User" } %>
+
+  <%= f.label :project_id, "Project" %>
+  <%= f.select :project_id, options_from_collection_for_select(@all_projects, :id, :name), { class: "form-control ", "data-placeholder" => "Project" } %>
+
+  <%= f.label :task_id, "Task" %>
+  <%= f.select :task_id, options_from_collection_for_select(@all_tasks, :id, :name), { class: "form-control", "data-placeholder" => "Task" } %>
+
+  <%= f.label :rate, "Rate" %>
+  <%= f.text_field :rate, {class: "form-control", placeholder: "0.00"} %>
+
+  <%= f.label :note, "Note" %>
+  <%= f.text_field :note, {class: "form-control last-control", placeholder: "Notes"} %>
+
+  <%= f.submit "Submit", class: "btn btn-primary btn-block control-btn" %>
+<% end %>

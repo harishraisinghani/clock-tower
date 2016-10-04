@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="ClockTower">
+<head>
+  <title>ClockTower</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
+</head>
+<body id="<%= 'admin' if on_admin? %>" role="application">
+  <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+    <div class="navbar-inner">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to "Clock Tower", root_path, { class: "navbar-brand" } %>
+        </div>
+
+        <% if is_logged_in? %>
+          <nav class="collapse navbar-collapse navbar-right" role="navigation">
+            <ul class="nav navbar-nav">
+              <% if current_user.is_admin? %>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Admin
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>
+                      <%= link_to "Users", admin_users_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Projects", admin_projects_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Tasks", admin_tasks_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Locations", admin_locations_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Rates", admin_rates_path %>
+                    <li role="presentation" class="divider"></li>
+                    <li>
+                      <%= link_to "Statements", admin_statements_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Statement Periods", admin_statement_periods_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Pay Statements", admin_pay_statements_path %>
+                    </li>
+                    <li role="presentation" class="divider"></li>
+                    <li>
+                      <%= link_to "Payroll Report", admin_reports_payroll_path(from: default_report_start_date, to: default_report_end_date) %>
+                    </li>
+                    <li>
+                      <%= link_to "Summary Report", admin_reports_summary_path(from: default_report_start_date, to: default_report_end_date) %>
+                    </li>
+                  </ul>
+                </li>
+              <% end %>
+              <% if is_impersonating? %>
+              <li>
+                <a href="#" >You are currently impersonating</a>
+              </li>
+              <% end %>
+              <li>
+                <%= link_to "Statements", statements_path %>
+              </li>
+              <li>
+                <%= link_to "Entries", time_entries_path %>
+              </li>
+              <li>
+                <%= link_to "Tracker", new_time_entry_path %>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Reports
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <%= link_to "My Entries", reports_entries_path(from: default_report_start_date, to: default_report_end_date) %>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <%= current_user.fullname %>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <%= link_to "Sign out", session_path, method: :delete %>
+                  </li>
+                  <li>
+                    <%= link_to "Edit Account Info", edit_profile_path %>
+                  </li>
+                  <li>
+                    <%= link_to "Update Password", edit_password_path %>
+                  </li>
+                  <li>
+                    <%= link_to "API Keys", api_keys_path %>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        <% end %>
+      </div>
+    </div>
+  </header>
+
+  <main id="wrap" role="main">
+    <div id="container">
+      <%= render 'layouts/flash' %>
+      <%= yield %>
+    </div>
+    <div id="push"></div>
+  </main>
+
+  <footer id="footer" role="contentinfo">
+    <div class="navbar-inverse">
+      <div class="container">
+        <div class="row" id="copyright">
+          <div class="col-md-6 muted text-left" >
+            Initial version by <a href="https://ca.linkedin.com/in/andresoesilo/" target="_blank">Andre Soesilo</a>,
+            Lighthouse Labs alumnus.
+          </div>
+          <div class="col-md-6 muted text-right"><%= ::VERSION %></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <link href="/css/app.css" rel="stylesheet">
+</body>
+</html>

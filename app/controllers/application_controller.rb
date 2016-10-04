@@ -1,0 +1,63 @@
+class ApplicationController < ActionController::Base
+
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+
+  before_action :authenticate_user
+  before_action :check_for_password_update
+  before_action :set_raven_context
+
+  private
+
+  def set_raven_context
+    Raven.user_context(user_id: session[:user_id])
+    Raven.extra_context(params: params.to_hash, url: request.url)
+  end
+
+  def current_user
+    @current_user ||= User.find_by(active: true, id: session[:user_id]) if session[:user_id]
+  end
+
+  def to_home_if_logged_in
+    redirect_to :root, alert: "You are already logged in" if current_user
+  end
+
+  def is_logged_in?
+    !current_user.nil?
+  end
+
+  def check_for_password_update
+    return unless current_user
+    redirect_to [:edit, :password], notice: 'A password update is required to proceed' if current_user.password_reset_required?
+  end
+
+
+  def authenticate_user
+    redirect_to new_session_path, alert: "Please login first!" unless current_user
+  end
+
+  def default_report_start_date
+    today = Date.today
+    today - today.wday
+  end
+
+  def default_report_end_date
+    Date.today
+  end
+
+  def is_impersonating?
+    session[:original_user_id] != nil
+  end
+
+  def current_impersonator
+    User.find_by(id: session[:original_user_id])
+  end
+
+  helper_method :current_user
+  helper_method :is_logged_in?
+  helper_method :default_report_start_date
+  helper_method :default_report_end_date
+  helper_method :is_impersonating?
+  helper_method :current_impersonator
+end
