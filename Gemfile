@@ -89,7 +89,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry'
-  gem 'pry-byebug'
+  # gem 'pry-byebug'
   gem 'dotenv-rails'
   gem 'quiet_assets'
   gem 'simplecov'

@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { case_sensitive: false }, email: true
   validates :password_reset_token, uniqueness: true, if: :password_reset_token
 
-  validate :rate_for_hourly
+  # validate :rate_for_hourly
 
   scope :hourly, -> { where(hourly: true) }
   scope :by_email, -> (email){ where('lower(email) = ?', email.downcase) }

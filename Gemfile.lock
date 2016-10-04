@@ -48,7 +48,6 @@ GEM
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     builder (3.2.2)
-    byebug (9.0.5)
     chosen-rails (1.1.1)
       coffee-rails (>= 3.2)
       compass-rails (>= 1.1.2)
@@ -153,9 +152,6 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-byebug (3.4.0)
-      byebug (~> 9.0)
-      pry (~> 0.10)
     puma (3.6.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
@@ -291,7 +287,6 @@ DEPENDENCIES
   paranoia (~> 2.0)
   pg
   pry
-  pry-byebug
   puma
   quiet_assets
   rails (= 4.2.5.1)
