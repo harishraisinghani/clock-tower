@@ -232,6 +232,7 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    slack-notifier (1.5.1)
     slop (3.6.0)
     spring (1.7.2)
     sprockets (2.12.4)
@@ -302,6 +303,7 @@ DEPENDENCIES
   sentry-raven
   silencer
   simplecov
+  slack-notifier
   spring
   statesman
   therubyracer
@@ -309,7 +311,7 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 RUBY VERSION
-   ruby 2.3.0p0
+   ruby 2.3.1p112
 
 BUNDLED WITH
    1.13.2

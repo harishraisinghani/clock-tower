@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby ENV['OVERRIDE_RUBY_VERSION'] || '2.3.0'
+ruby ENV['OVERRIDE_RUBY_VERSION'] || '2.3.1'
 
 gem 'pg'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -57,6 +57,9 @@ gem 'sentry-raven'
 gem 'statesman'
 
 gem 'paranoia', '~> 2.0'
+
+#Slack messaging gem
+gem 'slack-notifier'
 
 # ruby app server
 # https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
