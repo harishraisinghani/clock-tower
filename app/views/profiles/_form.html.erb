@@ -38,8 +38,23 @@
 
     <div class="col-md-6">
       <div class="form-group">
+        <%= f.label :slack_name, 'Slack Name' %>
+        <%= f.text_field :slack_name, { class: 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
         <%= f.label :has_tax, "Charge Tax?" %><br/>
         <%= f.check_box :has_tax %>
+      </div>
+    </div>
+
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :slack_reminder, "Receive Slack Reminders?" %><br/>
+        <%= f.check_box :slack_reminder %>
       </div>
     </div>
 

@@ -18,15 +18,26 @@
 
 # Learn more: http://github.com/javan/whenever
 
-#Setting slack notification job for 1 day before end of Statement Period
+### Setting slack notification job for 1 day before end of Statement Period at 9am
 
-periods = StatementPeriod.all()
+# periods = StatementPeriod.all()
 
-periods.each do |period|
-  notify_day = period.to.to_i - 1
-  every "0 9 #{notify_day} * *" do
-    runner "User.send_slack_reminder"
-  end
-end
+# periods.each do |period|
+#   unlocked_statements = Statement.where(locked_at: nil)
+#   unlocked_statements.each do |statement|
+#     person = User.find(statement.user_id)
+#     notify_day = period.to.to_i - 1
+#     every "0 9 #{notify_day} * *" do
+#       runner "person.send_slack_reminder"
+#     end
+#   end
+# end
+
+###For testing purposes only
+
+# every 2.minutes do
+#   runner "User.send_slack_reminder"
+# end
+###
 
 

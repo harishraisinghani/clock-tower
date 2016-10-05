@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    permitted_params = [:firstname, :lastname, :company_name, :tax_number, :has_tax, :email]
+    permitted_params = [:firstname, :lastname, :company_name, :tax_number, :has_tax, :email, :slack_name, :slack_reminder]
     permitted_params.push(:receive_admin_email) if current_user.is_admin?
 
     params.require(:user).permit(permitted_params)

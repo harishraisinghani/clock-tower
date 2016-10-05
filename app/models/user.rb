@@ -38,12 +38,25 @@ class User < ActiveRecord::Base
     }
   end
 
+  ### Actual slack reminder code
+  # def send_slack_reminder
+  #   if slack_name && slack_reminder
+  #     notify = Slack::Notifier.new "Webhook URL", channel: '#channel_name', username: 'clock-tower'
+  #     notify.ping "Reminder to review your statement - http://localhost:3000/statements/#{id}"
+  #   end
+  # end
+  ###
+
+  
+  ### For testing purposes only - using class method
   class << self
     def send_slack_reminder
       notify = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#announcements', username: 'clock-tower'
-      notify.ping "Reminder to review your statement"
+      message =  "Reminder to review your statement - http://localhost:3000/statements/20"
+      notify.ping message
     end
   end
+  ###
 
   private
 
