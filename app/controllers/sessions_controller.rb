@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  include SessionsHelper
+
   skip_before_action :authenticate_user, only: [:new, :create, :destroy]
   before_action :to_home_if_logged_in, only: [:new, :create]
 
@@ -10,6 +12,7 @@ class SessionsController < ApplicationController
     user = User.by_email(params[:email]).first
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      slack_reminder
       redirect_to new_time_entry_path
     else
       flash.now[:alert] = "Invalid email or password"
