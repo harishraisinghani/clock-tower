@@ -66,6 +66,7 @@ gem 'paranoia', '~> 2.0'
 #Slack messaging gem
 gem 'slack-notifier'
 
+
 # ruby app server
 # https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
 gem 'puma'

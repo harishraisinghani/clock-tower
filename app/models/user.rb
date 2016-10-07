@@ -49,13 +49,11 @@ class User < ActiveRecord::Base
 
   
   ### For testing purposes only - using class method
-  class << self
-    def send_slack_reminder
-      notify = Slack::Notifier.new "https://hooks.slack.com/services/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", channel: '#announcements', username: 'clock-tower'
-      message =  "Reminder to review your statement - http://localhost:3000/statements/20"
-      notify.ping message
-    end
-  end
+  # class << self
+  #   def send_slack
+  #     result = 
+  #   end
+  # end
   ###
 
   private
