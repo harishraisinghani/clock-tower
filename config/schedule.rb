@@ -35,9 +35,9 @@
 
 ###For testing purposes only
 
-every 2.minutes do
-  runner "SendSlackReminder.call()"
-end
+# every 2.minutes do
+#   runner "SendSlackReminder.call()"
+# end
 ###
 
 

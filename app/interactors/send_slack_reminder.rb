@@ -6,5 +6,4 @@ class SendSlackReminder
     message =  "HELLO GOAT"
     notify.ping message
   end
-
 end
